@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+{% endblock %}
+
+
+{% block body %}
+
+
+<div class="search_section">
+    {% if searched %}
+        <h1 class="search_section_head">You searched For {{searched}}</h1>
+        <div class="rt_food">
+            {% for food in result %}
+                <a href="{% url 'popup_add_cart' food.food_id %}" class="make_link">
+                    <div class="rt_food_inner">
+                        <img class="rt_food_img" src="media/{{ food.food_img }}" alt="food_image">
+                        <p class="rt_name">{{food.food_name}}</p>
+                        <p class="rating">3 ★</p><span class="time">₹ {{food.food_price}}</span><span><button class="btn_add">ADD</button></span>
+                        <p class="specialist">{{food.food_desc | slice:"0:65"}}...</p>
+                        <p class="rt_place">Status :- <span class="status">{{food.food_status}}</span></p>
+                    </div>          
+                </a>          
+            {% empty %}
+                <h2 class="sorry_line">Sorry , Your Search Did Not Match Any Products.</h2>
+            {% endfor %} 
+        </div>
+    {% else %}
+        <h1 class="key_provide">Kindly provide a keyword to search.</h1>
+    {% endif %}
+</div>
+
+
+{% endblock %}
+

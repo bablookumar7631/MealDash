@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/biryani.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<div class="biryani">
+
+    <div class="biryani_mix_theme">
+        <div class="box row-2">hello</div>
+        <div class="box col-2">hello</div>
+        <div class="box" id="box3">hello</div>
+        <div class="box row-2">hello</div>
+        <div class="box col-2">hello</div>
+    </div>
+
+    <div class="biryani_inner">
+        <p class="biryani_head">{{category.category_name}}</p>
+        <p class="biryani_below">Taste these delectable classics, delectable {{category.category_name}}s to make your day.</p>
+        <div class="biryani_filter">
+            <button>Filter</button>
+            <button>Pure Veg</button>
+            <button>Less than 30 mins</button>
+            <button>Rs. 300-Rs. 600</button>
+            <button>Less than Rs. 300</button>
+        </div>
+    </div>
+
+    <div class="b_rest_ro">
+        <p class="rest_ro">Explore Diverse iterations of a single food item</p>
+        <div class="inner_rest_ro">
+        {% for prod in product %}
+            <div class="rt_food_inner">
+                <img class="rt_food_img" src="{{ prod.food_img.url }}" alt="food_image">
+                <p class="rt_name">{{prod.food_name}}</p>
+                <p class="rating">3 &#9733</p><span class="time">&#x20B9; {{prod.food_price}}</span><span><button class="btn_add"><a href="{% url 'popup_add_cart' prod.food_id %}" class="make_link">ADD</a></button></span>
+                <p class="specialist">{{prod.food_desc | slice:"0:65"}}...</p>
+                <p class="rt_place">Status :- <span class="status">{{prod.food_status}}</span></p>
+            </div>
+        {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock body %}

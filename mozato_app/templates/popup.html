@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/popup.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<div class="popup">
+    <div class="under_popup">
+        <div class="popup_inner">
+            <div class="popup_img">
+                <img class="popup_food_img" src="{{food_detail.food_img.url}}" alt="food_image">
+            </div>
+            <div class="popup_desc">
+                <p class="food_name">{{food_detail.food_name}}</p>
+                <p class="rating">3 &#9733</p><span class="time">120 ratings</span>
+                <p class="about_food">{{food_detail.food_desc}}</p>
+            </div>
+        </div>
+        
+        <div class="add_items">
+            <div class="quantity">
+                <span class="dec_btn">&#8722;</span> &nbsp;&nbsp; <span class="item_count">1</span> &nbsp;&nbsp; <span class="incre_btn">&#43;</span>
+            </div>
+            <div class="total_price">
+                <form id="form_cart" method="POST">{% csrf_token %}
+                    <button type="button"  id="add-cart">Add items &#x20B9; <span class="item_price">{{ food_detail.food_price }}</span></button>
+                    
+                    <input type="hidden" name="food_id" value="{{food_detail.food_id}}">
+                    <input class="item_count" type="hidden" name="count" value="1">
+                    <input type="hidden" value="{{food_detail.food_price}}" name="perItemPrice" id="perItemPrice">
+                    <input type="hidden" name="totalPrice" id="totalPrice">
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}
+
+
+{% block js %}
+
+<script>
+    
+$(document).ready(function() {
+    $(".dec_btn").click(function() {
+        var countElement = $(this).siblings('.item_count');
+        var count = parseInt(countElement.text());
+        updateTotalPrice(count-1);
+        countElement.text(count - 1);
+        if(count == 1){
+            window.location.href='/'
+        }
+    });
+
+    $(".incre_btn").click(function() {
+        var countElement = $(this).siblings('.item_count');
+        var count = parseInt(countElement.text());
+        if (count < 10 ){
+            countElement.text(count + 1);
+            updateTotalPrice(count+1);
+        }
+    });
+
+    function updateTotalPrice(count) {
+        var  perItemPrice = $('#perItemPrice').val();
+        var totalPrice = (parseInt(perItemPrice)*count).toFixed(2);
+        $('.item_price').text(totalPrice)
+        $('#totalPrice').val(totalPrice);
+    }
+});
+
+
+// Add the items into the cart
+$(document).on('click', '#add-cart', function(e){
+    e.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: "{% url 'addToCart' %}",
+        data: $('#form_cart').serialize(),
+
+        success: function(json){
+            var cartLength = json.qty;
+            $('.cart_qunt').text(cartLength);
+        },
+
+        error: function(xhr, errmsg, err){
+            console.log(errmsg);
+        }
+    });
+});
+
+</script>
+    
+{% endblock %}
+                                       

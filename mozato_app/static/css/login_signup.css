@@ -1,0 +1,82 @@
+body{
+    background-color: rgb(249, 241, 230);
+}
+
+.footer{
+    display: none;
+}
+
+.hello_user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.container{
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px;
+}
+
+
+.form_container form{
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+
+}
+.form-inner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 3rem;
+}
+.form-inner input{
+    outline: none;
+    border: 1px solid rgb(194, 194, 194);
+    padding: 1rem;
+    height: 1.1rem;
+    border-radius: 9px;
+    font-size: .8rem;
+}
+.form-inner h1{
+    text-align: center;
+    margin-bottom: 1.3rem;
+}
+
+button.signup_btn{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 7px;
+    background-color: green;
+    color: white;
+    border: none;
+    padding: .6rem 2rem;
+    margin-top: .5rem;
+}
+
+.create_line{
+    margin-top: .8rem;
+    font-size: 15px;
+    font-weight: 600;
+}
+.message{
+    color: rgb(250, 0, 0);
+}
+.cross{
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 10px;
+    margin-left: 1.1rem;
+    align-items: center;
+    cursor: pointer;
+}

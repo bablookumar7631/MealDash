@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load helpers %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+{% endblock %}
+
+{% block body %}
+
+<div class="chechout_page">
+    <div class="checkout_left">
+
+        <div class="left_outside">
+            {% for food in cart %}
+            <div class="left_check_img">
+                <div class="img_check">
+                    <img class="food_theme_img" src="media/{% getFoodImagePath food.food_id %}" alt="">
+                </div>
+                <div class="img_other">
+                    <p class="rt_name">{{food.name}} (<span class="perItemPrice">{{food.price}}</span>/piece)</p>
+                    <p class="rt_place">Status :- <span class="status">{{food.status}}</span></p>
+                    <div class="pri_quantity">
+                        <p class="time">&#x20B9; <span class="itemTotalPrice"></span>
+                            <input type="hidden" name="" class="itemTotalPriceTag">
+                        </p>
+                        <div class="quantity">
+                            <span class="dec_btn">&#8722;</span> &nbsp;&nbsp; <span class="item_count">{{food.quantity}}</span> &nbsp;&nbsp; <span class="incre_btn">&#43;</span>
+                            <!-- <p><span>&#8722;</span> &nbsp;&nbsp; <span class="item_count">{{food.quantity}}</span> &nbsp;&nbsp; <span>&#43;</span></p> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            
+            
+            <!-- <div class="left_check_img">
+                <div class="img_check">
+                    <img class="food_theme_img" src="{% static 'brand_img/burgur.jpg' %}" alt="">
+                </div>
+                <div class="img_other">
+                    <p class="rt_name">Hydraba biryani</p>
+                    <p class="rt_place">Status :- <span class="status">Available</span></p>
+                    <div class="pri_quantity">
+                        <p class="time">&#x20B9; 140</p>
+                        <div class="quantity">
+                            <p><span>&#8722;</span> &nbsp;&nbsp; 1 &nbsp;&nbsp; <span>&#43;</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+        <div class="border_line"></div>
+
+        <div class="login_signup">
+            <p>To place your order now, log in to your existing account or sign up.</p>
+            <div class="login_signup_inner">
+                <button class="lg">Log In</button>
+                <button class="sp">Sign Up</button>
+            </div>
+        </div>
+
+        <div class="delibary_add">
+            <div class="dl_add_inner">
+                <p class="DA">Delivery Address <span>Change</span></p>
+                <section>
+                    <p class="y_a">Your Address :</p>
+                    <p class="y_address">gamma-2, greater noida up-16</p>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="checkout_right">
+        <div class="bills_details">
+            <div class="inner_checkout_left">
+                <h4>Bill Details</h4>
+                <p>Total Price <span>&#x20B9; <span id="total-price"></span></span></p>
+                <p>Delivery Fee | 1.6 kms <span>&#x20B9; 51.00</span></p>
+                <p>Platform fee <span>&#x20B9; 5.00</span></p>
+                <p>GST and Restaurant Charges <span>&#x20B9; 30.54</span></p>
+                <hr>
+                <p>To Pay <span id="to-pay">&#x20B9; 0</span></p>
+            </div>
+        </div>
+        <div class="cacellation_details">
+            <h4>Review your order and address details to avoid cancellations</h4>
+            <p class="canc_rule"><span>Note:</span> If you cancel within 60 seconds of placing your order, a 100% refund will be issued. No refund for cancellations made after 60 seconds.</p>
+            <p class="good_pint">Avoid cancellation as it leads to food wastage.</p>
+        </div>
+
+        <div class="proceed_to_pay">
+            <button class="proceed_btn">Proceed To Pay</button>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block js %}
+
+<script>
+    const deliveryFee = 51.00;
+    const platformFee = 5.00;
+    const gstAndRestaurantCharges = 30.54;
+
+    $(".dec_btn").click(function() {
+        var countElement = $(this).siblings('.item_count');
+        var count = parseInt(countElement.text());
+        updateItemPrice($(this), count - 1);
+        countElement.text(count - 1);
+        if (count == 1) {
+            $(this).closest('.left_check_img').remove();
+        }
+    });
+
+    $(".incre_btn").click(function() {
+        var countElement = $(this).siblings('.item_count');
+        var count = parseInt(countElement.text());
+        if (count < 10) {
+            countElement.text(count + 1);
+            updateItemPrice($(this), count + 1);
+        }
+    });
+
+    function updateItemPrice(element, count) {
+        var count1 = count || parseInt(element.closest('.img_other').find('.item_count').text());
+        var perItemPrice = parseFloat(element.closest('.img_other').find('.perItemPrice').text());
+        var totalPrice = (parseFloat(perItemPrice) * count1).toFixed(2);
+        element.closest('.img_other').find('.itemTotalPrice').text(totalPrice);
+        element.closest('.img_other').find('.itemTotalPriceTag').val(totalPrice);
+        UpdateTotalPrice();
+    }
+
+    $('.item_count').each(function() {
+        updateItemPrice($(this), parseInt($(this).text()));
+    });
+
+    $('body').on('change', '.itemTotalPriceTag', function() {
+        UpdateTotalPrice();
+    });
+
+    function UpdateTotalPrice() {
+        var sum = 0;
+        $('.itemTotalPriceTag').each(function() {
+            sum += parseFloat($(this).val());
+        });
+        $('#total-price').text(sum.toFixed(2));
+        var totalToPay = sum + deliveryFee + platformFee + gstAndRestaurantCharges;
+        $('#to-pay').text(`₹ ${totalToPay.toFixed(2)}`);
+    }
+
+    UpdateTotalPrice();
+
+
+</script>
+
+
+{% endblock %}

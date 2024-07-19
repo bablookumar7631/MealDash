@@ -1,0 +1,255 @@
+body{
+    background-color: rgb(249, 241, 230);
+}
+
+.footer{
+    display: none;
+}
+
+.chechout_page{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+/* left */
+.checkout_left{
+    flex-basis: 60% !important;
+    margin-right: 1.5rem;
+    margin-top: 8rem;
+    background-color: white;
+    border-radius: 9px;
+    height: fit-content;
+}
+
+.left_check_img{
+    background-color: whitesmoke;
+    width: 95%;
+    margin: 0 auto;
+    border-radius: 9px;
+    display: flex;
+    height: 120px;
+    margin-top: 1.2rem;
+    margin-bottom: .76rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.food_theme_img{
+    border-radius: 9px 0 0 9px;
+    width: 200px;
+    height: 120px;
+}
+.img_other{
+    margin-left: 1.5rem;
+}
+.pri_quantity{
+    display: flex;
+}
+.quantity{
+    border: 1px solid  green;
+    padding: .2rem .5rem;
+    border-radius: 8px;
+    background-color: rgb(253, 255, 253);
+    font-weight: 600;
+    margin-left:2rem;
+}
+.quantity span{
+    cursor: pointer;
+}
+.time{
+    font-size: 20px;
+    font-weight: 600;
+}
+.rt_place{
+    margin-bottom: .5rem;
+}
+.border_line{
+    border: 1px solid rgb(168, 168, 168);
+    margin-top: 4rem;
+}
+
+
+/* login and signup  */
+.login_signup{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: .6rem;
+    margin-bottom: .6rem;
+    background-color: rgb(237, 242, 242);
+    width: 95%;
+    border-radius: 9px;
+    padding: 3%;
+}
+.login_signup p{
+    text-align: center;
+    font-weight: 600;
+    font-size: larger;
+}
+.login_signup_inner{
+    margin-top: .5rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.login_signup_inner button{
+    padding: .5rem 1.5rem;
+    font-weight: 600;
+    border-radius: 9px;
+    border: none;
+    color: white;
+    background-color: rgb(9, 167, 9);
+    cursor: pointer;
+}
+.login_signup_inner button:hover{
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+button.lg{
+    background-color: white;
+    border: 1px solid green;
+    color: rgb(9, 167, 9);
+}
+
+
+/* address */
+.delibary_add{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    margin-top: .6rem;
+    margin-bottom: .8rem;
+    background-color: rgb(237, 242, 242);
+    width: 95%;
+    border-radius: 9px;
+    padding: 3%;
+}
+.DA{
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: larger;
+}
+.DA span{
+    color: red;
+    cursor: pointer;
+    font-weight: 500;
+}
+section .y_a{
+    font-size: large;
+    margin-top: .2rem;
+}
+.y_address{
+    color: rgb(163, 163, 163);
+}
+
+
+/* right */
+.checkout_right{
+    flex-basis: 35% !important;
+    margin-top: 7rem;
+    padding: 1.2rem 0;
+    border-radius: 9px;
+}
+
+.bills_details{
+    background-color: white;
+    border-radius: 9px;
+    margin-bottom: 1rem;
+    line-height: 2rem;
+}
+
+.inner_checkout_left p{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.inner_checkout_left{
+    padding: 1.5rem;
+}
+.inner_checkout_left span{
+    color: black;
+    font-weight: 600;
+}
+
+.cacellation_details{
+    background-color: white;
+    border-radius: 9px;
+    padding: 1.5rem;
+}
+.canc_rule{
+    font-size: .9rem;
+    padding: .2rem 0;
+}
+.canc_rule span{
+    color: red;
+}
+.good_pint{
+    color: rgb(156, 156, 156);
+}
+
+/* proceed to pay */
+.proceed_to_pay{
+    width: 100%;
+    margin-top: 1rem;
+    background-color: white;
+    border-radius: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+.proceed_btn{
+    border-radius: 9px;
+    border: none;
+    background-color: rgb(9, 167, 9);
+    color: white;
+    padding: .5rem 0;
+    width: 97%;
+    font-weight: 700;
+    font-size: larger;
+}
+.proceed_btn:hover{
+    cursor: pointer;
+    background-color: rgb(51, 117, 51);
+}
+.proceed_btn:active{
+    background: none;
+    border: 1.5px solid black;
+    color: black;
+}
+
+
+@media screen and (max-width: 1023px){
+    .checkout_right{
+        flex-basis: 42% !important;
+    }
+}
+
+@media screen and (max-width: 900px){
+    .chechout_page{
+        flex-direction: column;
+    }
+    .checkout_left{
+        margin-right: 0;
+    }
+    .checkout_right{
+        margin-top: 2rem;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .left_check_img{
+        flex-direction: column;
+        height: auto;
+        width: 201px;
+    }
+    .food_theme_img{
+        border-radius: 9px 9px 0 0;
+        overflow: hidden;
+    }
+    .pri_quantity{
+        margin-bottom: .5rem;
+    }
+}

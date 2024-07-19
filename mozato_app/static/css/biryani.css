@@ -1,0 +1,91 @@
+
+.biryani_head{
+    font-size: 2rem;
+    font-weight: 800;
+}
+.biryani_below{
+    font-size: 1.2rem;
+}
+.biryani_filter{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+.biryani_filter button{
+    border: 1px solid rgb(252, 90, 90);
+    background-color: #ffffff27;
+    padding: .5rem 1.5rem;
+    border-radius: 5rem;
+    transition: all .5s ease-in-out;
+}
+.biryani_filter button:hover{
+    background-color: rgb(250, 230, 230);
+}
+.rest_ro{
+    font-size: 30px;
+    font-weight: 600;
+    color: black;
+}
+.inner_rest_ro{
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.under_rest_ro{
+    display: inline-block;
+    background-color: #f9f8f8;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-right: 1rem;
+    margin-bottom: 1.5rem;
+    transition: all 1s;
+}
+.under_rest_ro:hover{
+    transform: scale(0.96);
+}
+.biryani_inner{
+    margin-top: 1.5rem;
+}
+
+
+
+
+.biryani_mix_theme{
+    display: grid;
+    gap: .05rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 120px;
+}
+.box{
+    background-image: url('/static/brand_img/background_img.webp');
+    color: #fcfcfc;
+    background-size: cover;
+    background-position: top;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #545454;
+    background-blend-mode: hard-light;
+    font-size: 2rem;
+    transition: all 1s ease-in-out;
+}
+.box:hover{
+    background-color: #bdbdbd;
+    background-position: center;
+    box-shadow: 0 0 4px #fff;
+}
+.row-2{
+    grid-row: span 2;
+}
+.col-2{
+    grid-column: span 2;
+}
+
+
+
+
+

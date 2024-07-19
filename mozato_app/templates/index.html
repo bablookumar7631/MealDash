@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="head_body">
+    <div class="inner_body">
+        <div class="inner_img">
+            <p>Food may be essential as fuel for the body, but good food is fuel for the soul</p>
+            <img class="head_img" src="{% static 'images/img_15.webp' %}" alt="">
+        </div>
+    </div>
+</div>
+
+<!-- What's on your mind? -->
+<div class="food_theme">
+    <div class="food_theme_inner">
+        <div class="ft_head">
+            <p class="food_theme_head">What's on your mind?</p>
+        </div>
+
+        <div class="arrow_ft">
+            <img class="right_arrow" id="backbtn" src="{% static 'images/right_arrow.png' %}" alt="">
+            <img class="left_arrow" id="nextbtn" src="{% static 'images/left_arrow.png' %}" alt="">
+        </div>
+    </div>
+
+
+    <div class="food_theme_under">
+        {% for cat_food in data1 %}
+        <a class="mind_item" href="{% url 'category' cat_food.category_name  %}">
+            <img class="food_theme_img" src="media/{{ cat_food.cattegory_img }}" alt="food_image">
+        </a>
+        {% endfor %}
+    </div>
+
+    <!-- <img class="food_theme_img" src="{% static 'images/Biryani_2.webp' %}" alt="">
+        <img class="food_theme_img" src="{% static 'images/Burger.webp' %}" alt="">
+        <img class="food_theme_img" src="{% static 'images/Cakes.webp' %}" alt="">
+        <img class="food_theme_img" src="{% static 'images/Chinese.webp' %}" alt="">
+        <img class="food_theme_img" src="{% static 'images/Dosa.webp' %}" alt="">
+        <img class="food_theme_img" src="{% static 'images/Ice_Creams.webp' %}" alt="">
+        <img class="food_theme_img" src="{% static 'images/Idli.webp' %}" alt="">
+        <img class="food_theme_img" src="{% static 'images/Momos.webp' %}" alt="">
+        <img class="food_theme_img" src="{% static 'images/North_Indian_4.webp' %}" alt="">
+        <img class="food_theme_img" src="{% static 'images/Paratha.webp' %}" alt="">
+        <img class="food_theme_img" src="{% static 'images/Pasta.webp' %}" alt="">
+        <img class="food_theme_img" src="{% static 'images/Pastry.webp' %}" alt="">
+        <img class="food_theme_img" src="{% static 'images/Rolls.webp' %}" alt="">
+        <img class="food_theme_img" src="{% static 'images/South_Indian_4.webp' %}" alt=""> -->
+
+
+</div>
+
+<!-- top brand -->
+<div class="top_brand">
+    <div class="top_brand_inner">
+        <div class="brand_top">
+            <p class="top_brand_head">Also Available On</p>
+        </div>
+
+        <div class="left_right">
+            <img class="right_arrow" id="backbtn_1" src="{% static 'images/right_arrow.png' %}" alt="">
+            <img class="left_arrow" id="nextbtn_1" src="{% static 'images/left_arrow.png' %}" alt="">
+        </div>
+    </div>
+
+    <div class="brand_img">
+        <img class="tb_img" src="{% static 'brand_img/tb_1.avif' %}" alt="">
+        <img class="tb_img" src="{% static 'brand_img/tb_2.avif' %}" alt="">
+        <img class="tb_img" src="{% static 'brand_img/tb_3.avif' %}" alt="">
+        <img class="tb_img" src="{% static 'brand_img/tb_4.avif' %}" alt="">
+        <img class="tb_img" src="{% static 'brand_img/tb_5.avif' %}" alt="">
+        <img class="tb_img" src="{% static 'brand_img/tb_6.avif' %}" alt="">
+        <img class="tb_img" src="{% static 'brand_img/tb_7.avif' %}" alt="">
+        <img class="tb_img" src="{% static 'brand_img/tb_8.avif' %}" alt="">
+        <img class="tb_img" src="{% static 'brand_img/tb_9.avif' %}" alt="">
+        <img class="tb_img" src="{% static 'brand_img/tb_10.avif' %}" alt="">
+    </div>
+</div>
+
+
+<!-- Restaurants with online food delivery -->
+<div class="rt_with_food">
+    <div class="rt_head">
+        <p class="top_brand_head">Restaurants with online food delivery</p>
+        <div class="rt_food">
+            {% for food in data %}
+            <!-- <a href="{% url 'popup_add_cart' food.food_id %}" class="make_link"> -->
+                <div class="rt_food_inner">
+                    <img class="rt_food_img" src="media/{{ food.food_img }}" alt="food_image">
+                    <p class="rt_name">{{food.food_name}}</p>
+                    <p class="rating">3 &#9733</p><span class="time">&#x20B9; {{food.food_price}}</span><span><button
+                            class="btn_add"><a href="{% url 'popup_add_cart' food.food_id %}" class="make_link">ADD</a></button></span>
+                    <p class="specialist">{{food.food_desc | slice:"0:65"}}...</p>
+                    <!-- <p class="rt_place">Status :- <span class="status">{{food.food_status}}</span></p> -->
+                    <p class="rt_place">Status: <span class="status {% if food.food_status == 'Available' %} green-text {% endif %}">{{food.food_status}}</span></p>
+                </div>
+            <!-- </a> -->
+            {% endfor %}
+        </div>
+
+
+        <div class="more_arrow">
+            <p class="show_more" id="load-more-button" page="{{ data.next_page_number }}">Show more <img class="down-button"
+                    src="{% static 'brand_img/down-button.png' %}" alt=""></p>
+        </div>
+    </div>
+</div>
+
+
+<!-- some information -->
+<div class="s_infor">
+    <div class="s_i_line">
+        <p>For better experience,download the mozato app now</p>
+    </div>
+
+    <div class="s_i_playstore">
+        <img class="store" src="{% static 'brand_img/play_store.webp' %}" alt="">
+        <img class="store" src="{% static 'brand_img/app_store.webp' %}" alt="">
+    </div>
+</div>
+
+
+{% endblock body %}
+
+
+
+
+
+{% block js %}
+
+<script>
+    
+    $(document).ready(function () {
+        $("#load-more-button").on('click', function () {
+            var pg = $(this).attr('page');
+            $.ajax({
+                url: "{% url 'loadmore' %}",
+                type: 'post',
+                data: {
+                    'page': pg,
+                    'csrfmiddlewaretoken': "{{csrf_token}}"
+                },
+                dataType: 'json',
+                beforeSend: function () {
+                    $("#load-more-button").addClass('disabled').text('Loading..');
+                },
+                success: function (res) {
+                    var _html = '';
+                    var json_data = $.parseJSON(res.items);
+                    $.each(json_data, function (index, items) {
+                        _html += '<div class="rt_food_inner">\
+                                    <img class="rt_food_img" src="media/' + items.fields.food_img + '" alt="food_image">\
+                                    <p class="rt_name">' + items.fields.food_name + '</p>\
+                                    <p class="rating">3 &#9733</p><span class="time">&#x20B9; ' + items.fields.food_price + '</span><span><button class="btn_add">ADD</button></span>\
+                                    <p class="specialist">' + items.fields.food_desc.slice(0, 65) + '...</p>\
+                                    <p class="rt_place">Status :- <span class="status">' + items.fields.food_status + '</span></p>\
+                                </div>';
+                    });
+                    $(".rt_food").append(_html);
+                    if(res.next == true){
+                        $("#load-more-button").removeClass('disabled').text('Load More');
+                    } else {
+                        $("#load-more-button").remove();
+                    }
+                }
+
+            });
+        });
+    });
+
+</script>
+
+<!-- <script>
+    
+    $(document).ready(function () {
+        $("#load-more-button").on('click', function () {
+            var pg = $(this).attr('page');
+            $.ajax({
+                url: "{% url 'loadmore' %}",
+                type: 'post',
+                data: {
+                    'page': pg,
+                    'csrfmiddlewaretoken': "{{csrf_token}}"
+                },
+                dataType: 'json',
+                beforeSend: function () {
+                    $("#load-more-button").addClass('disabled').text('Loading..');
+                },
+                success: function (res) {
+                    var _html = '';
+                    var json_data = $.parseJSON(res.items);
+                    $.each(json_data, function (index, items) {
+                        _html += '<a href="{% url 'loadmore' %}?food_id=' + items.fields.food_id + '" class="make_link">\
+                                    <div class="rt_food_inner">\
+                                    <img class="rt_food_img" src="media/' + items.fields.food_img + '" alt="food_image">\
+                                    <p class="rt_name">' + items.fields.food_name + '</p>\
+                                    <p class="rating">3 &#9733</p><span class="time">&#x20B9; ' + items.fields.food_price + '</span><span><button class="btn_add">ADD</button></span>\
+                                    <p class="specialist">' + items.fields.food_desc.slice(0, 65) + '...</p>\
+                                    <p class="rt_place">Status :- <span class="status">' + items.fields.food_status + '</span></p>\
+                                    </div>\
+                                </a>';
+                    });
+                    $(".rt_food").append(_html);
+                    if(res.next == true){
+                        $("#load-more-button").removeClass('disabled').text('Load More');
+                    } else {
+                        $("#load-more-button").remove();
+                    }
+                }
+
+            });
+        });
+    });
+
+</script> -->
+{% endblock %}

@@ -1,0 +1,61 @@
+{% load static %}
+
+<div class="hero">
+    <div class="brand"><a href="{% url 'index'  %}">F✌️भंडार</a></div>
+
+        <div class="inner_brand">
+            
+                <div class="search_location">
+                    <i id="loc" class='fas fa-location-dot fa-9x' style='color:#000000; font: icon;'></i>
+
+                    <select name="curr_loct" id="curr_loct">
+                        <option value="noida">Noida</option>
+                        <option value="saab" id="saab">Detect current location</option>
+                    </select>
+                    
+                    <p class="line"></p>
+                <form method="POST" action="{% url 'search' %}">{% csrf_token %} 
+                    <button type="submit" id="search-button"><a class="fa-solid fa-magnifying-glass fa-sm sarch-icon"></a></button> 
+                    <input type="search" id="search-input" name="searched" placeholder="Search for cuisine or a dish">
+                </div>
+            </form>
+        </div>
+
+        <div class="user">
+            {% if user.is_authenticated %}
+                <img class="user_img" id="user_m" src="{% static 'images/user.png' %}" alt="">
+            {% else %}
+                <a class="log-nav" href="{% url 'login' %}">Login</a>
+            {% endif %}
+    
+            <a class="cart_icon" href="{% url 'checkout' %}">&#128722; <span class="cart_qunt" id="cart_qunt">{{cartLength}}</span></a>
+        </div> 
+
+        <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+                <div class="user-info">
+                    <img src="{% static 'images/Burger.webp' %}" alt="">
+                    <h2>{{user.username}}</h2>
+                </div>
+                <hr>
+
+                <a href="" class="sub-mnu-link" id="user-pro">
+                    <i class="fa-solid fa-user li-icon"></i>
+                    <p class="li-name">Edit Profile</p>
+                    <span>></span>
+                </a>
+                <a href="" class="sub-mnu-link">
+                    <i class="fa-solid fa-box-open li-icon"></i>
+                    <p>My Orders</p>
+                    <span>></span>
+                </a>
+                <a href="{% url 'logout' %}" class="sub-mnu-link">
+                    <i class="fas fa-sign-out li-icon"></i>
+                    <p>Logout</p>
+                    <span>></span>
+                </a>
+
+            </div>
+        </div>
+</div>
+
